@@ -11,7 +11,8 @@ namespace demo
 {
     public partial class ProductDbContext : DbContext
     {
-        public ProductDbContext()
+      
+       public ProductDbContext()
         {
         }
 
@@ -23,8 +24,9 @@ namespace demo
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Adminsignup> Adminsignups { get; set; }
         public virtual DbSet<Productlist> Productlists { get; set; }
+        public virtual DbSet<Productlist> SignupUsers { get; set; }
         public virtual DbSet<SequelizeMetum> SequelizeMeta { get; set; }
-        public virtual DbSet<SignupUser> SignupUsers { get; set; }
+       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -148,7 +150,7 @@ namespace demo
                     .HasColumnName("name");
             });
 
-            modelBuilder.Entity<SignupUser>(entity =>
+           modelBuilder.Entity<SignupUser>(entity =>
             {
                 entity.ToTable("signupUsers");
 
@@ -180,6 +182,8 @@ namespace demo
                     .HasColumnType("timestamp with time zone")
                     .HasColumnName("updatedAt");
             });
+         
+         
 
             OnModelCreatingPartial(modelBuilder);
         }
